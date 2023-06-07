@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       node_version: 18.4.0
+      env_test_outer: outer env var
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,3 +23,17 @@ jobs:
             echo "::error::output mismatch! expected=$expected, actual=$actual"
             exit 1
           fi
+      - name: Env test composite action
+        id: env_composite
+        uses: ./../dynamic-uses
+        with:
+          uses: ./.github/actions/composite
+        env:
+          env_test_composite: composite
+      - name: Env test javascript action
+        id: env_js
+        uses: ./../dynamic-uses
+        with:
+          uses: ./.github/actions/javascript
+        env:
+          env_test_javascript: javascript

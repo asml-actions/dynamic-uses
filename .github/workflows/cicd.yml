@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - env-var-test
 concurrency:
   group: cicd
 jobs:

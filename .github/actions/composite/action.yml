@@ -1,0 +1,8 @@
+name: Composite Action
+description: Composite Action
+runs:
+  using: composite
+  steps:
+    - name: Echo env_test vars
+      shell: bash
+      run: env|grep env_test

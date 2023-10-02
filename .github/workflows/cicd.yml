@@ -2,9 +2,12 @@ name: CICD
 on:
   push:
     branches:
+      - secrets-test
       - main
 concurrency:
   group: cicd
 jobs:
   test:
     uses: ./.github/workflows/test.yml
+    secrets:
+      s3kr1t: shhhh

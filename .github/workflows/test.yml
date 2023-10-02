@@ -1,5 +1,10 @@
 name: Test
-on: workflow_call
+on:
+  workflow_call:
+    secrets:
+      s3kr1t:
+        description: Super secret
+        required: false
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,6 +19,16 @@ jobs:
         with:
           uses: "${{ 'actions/setup-node@v3' }}"
           with: '{ "node-version": "${{ env.node_version }}" }'
+      - name: Get secret
+        uses: actions/github-script@v6
+        with:
+          script: console.log(core.getSecret('s3kr1t'));
+      - name: Get secret dynamic
+        uses: ./../dynamic-uses
+        with:
+          uses: actions/github-script@v6
+          with: |
+            {"script": "console.log(core.getSecret('s3kr1t'));"}
       - name: Validate outputs
         run: |
           expected="v${node_version}"

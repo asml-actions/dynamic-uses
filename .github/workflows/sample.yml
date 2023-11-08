@@ -1,0 +1,12 @@
+name: test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GITHUB_TOKEN is NOT set 😅"
+        if: (!env.GITHUB_TOKEN)
+      - run: |
+          echo "::error::GITHUB_TOKEN is set but shouldn't be!"
+          exit 1
+        if: env.GITHUB_TOKEN

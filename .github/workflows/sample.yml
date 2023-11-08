@@ -1,0 +1,11 @@
+name: test
+on: push
+jobs:
+  test:
+    runs-on: true
+    steps:
+      - run: true
+  test2:
+    runs-on: [true, 123, 0]
+    steps:
+      - run: true

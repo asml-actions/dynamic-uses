@@ -1,0 +1,6 @@
+name: test
+on: push
+jobs:
+  test:
+    if: false
+    uses: ./.github/workflows/sample2.yml

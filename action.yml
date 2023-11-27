@@ -30,7 +30,17 @@ runs:
           - run: rm -rf ./.tmp-dynamic-uses
             shell: sh
           - name: Run
+            env:
+              GITHUB_ACTION_REF: ""
+              GITHUB_ACTION_REF2: ""
+              GITHUB_ACTION_REPOSITORY: ""
+            shell: sh
+            run: env|grep GITHUB_ACTION
+          - name: Run
             id: run
+            env:
+              GITHUB_ACTION_REF: ""
+              GITHUB_ACTION_REPOSITORY: ""
             uses: ${{ inputs.uses }}
             with: ${{ inputs.with || '{}' }}
         DYNAMIC_USES_EOF

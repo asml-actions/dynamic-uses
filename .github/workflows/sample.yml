@@ -1,0 +1,11 @@
+name: test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      equalityAssociativity: ${{ '' == '' == 1 && 'left-associative' || 1 == '' == '' && 'right-associative' || 'unknown' }}
+      relationalAssociativity: ${{ 1 < 2 < 3 && 'left-associative' || 3 > 2 > 1 && 'right-associative' || 'unknown' }}
+      relationalPrecedence: ${{ 1 < 2 == true == 2 > 1 && 'higher than equality' || '1' < '1.0' == true && 'lower than equality' || 'same as equality' }}
+    steps:
+      - run: env|sort|grep -E 'Associativity|Precedence'

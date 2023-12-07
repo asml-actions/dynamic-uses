@@ -1,0 +1,11 @@
+name: custom cache
+description: custom cache
+inputs:
+  path:
+    description: path
+runs:
+  using: composite
+  steps:
+    - uses: ./action-cache-impl
+      with:
+        path: ${{ inputs.path }}

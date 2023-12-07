@@ -1,0 +1,11 @@
+name: composite
+description: composite
+inputs:
+  path:
+    description: path
+runs:
+  using: composite
+  steps:
+    - uses: ./action-custom-cache
+      with:
+        path: ./some-path

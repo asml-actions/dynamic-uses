@@ -1,0 +1,9 @@
+name: action 2
+description: Action 2
+inputs:
+  path:
+    description: path
+runs:
+  using: node20
+  main: index.js
+  post: post.js
